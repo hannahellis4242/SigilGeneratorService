@@ -1,0 +1,159 @@
+openapi: 3.0.0
+info:
+  version: '1'
+  title: Sigil Generator Service
+  description: A service that will generate an svg image based on a given input
+servers:
+  - url: "http://sigil:8080"
+paths: 
+  /quadratic/{width}/{height}/{num}:
+    get:
+      summary: get a quadratic curve
+      operationId: getQuadWidthHeight
+      description: produces an svg image of a curve that is created as series of quadratic curves
+      parameters:
+        - in: query
+          name: seed
+          description: the seed used by the random number generator to produce the curve, if not given then seed is based on the time the call was made
+          schema:
+            type: string
+        - in: path
+          name: width
+          description: the width of the image in pixels
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+        - in: path
+          name: height
+          description: the height of the image in pixels
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+        - in: path
+          name: num
+          description: the number of points used to generate the curve
+          required: true
+          schema:
+            type: integer
+            minimum: 2
+      responses:
+        "200":
+          description: the curve
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+        "400":
+          description: bad request
+  /quadratic/{size}/{num}:
+    get:
+      summary: get a quadratic curve
+      operationId: getQuadSize
+      description: produces an svg image of a curve that is created as series of quadratic curves
+      parameters:
+        - in: query
+          name: seed
+          description: the seed used by the random number generator to produce the curve, if not given then seed is based on the time the call was made
+          schema:
+            type: string
+        - in: path
+          name: size
+          description: the width and height of the image in pixels
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+        - in: path
+          name: num
+          description: the number of points used to generate the curve
+          required: true
+          schema:
+            type: integer
+            minimum: 2
+      responses:
+        "200":
+          description: the curve
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+        "400":
+          description: bad request
+  /cubic/{width}/{height}/{num}:
+    get:
+      summary: get a cubic curve
+      operationId: getcubeWidthHeight
+      description: produces an svg image of a curve that is created as series of cubic curves
+      parameters:
+        - in: query
+          name: seed
+          description: the seed used by the random number generator to produce the curve, if not given then seed is based on the time the call was made
+          schema:
+            type: string
+        - in: path
+          name: width
+          description: the width of the image in pixels
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+        - in: path
+          name: height
+          description: the height of the image in pixels
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+        - in: path
+          name: num
+          description: the number of points used to generate the curve
+          required: true
+          schema:
+            type: integer
+            minimum: 3
+      responses:
+        "200":
+          description: the curve
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+        "400":
+          description: bad request
+  /cubic/{size}/{num}:
+    get:
+      summary: get a cubic curve
+      operationId: getCubeSize
+      description: produces an svg image of a curve that is created as series of cubic curves
+      parameters:
+        - in: query
+          name: seed
+          description: the seed used by the random number generator to produce the curve, if not given then seed is based on the time the call was made
+          schema:
+            type: string
+        - in: path
+          name: size
+          description: the width and height of the image in pixels
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+        - in: path
+          name: num
+          description: the number of points used to generate the curve
+          required: true
+          schema:
+            type: integer
+            minimum: 3
+      responses:
+        "200":
+          description: the curve
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+        "400":
+          description: bad request
+                   
