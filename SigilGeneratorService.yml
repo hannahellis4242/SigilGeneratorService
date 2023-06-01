@@ -1,11 +1,11 @@
 openapi: 3.0.0
 info:
-  version: '1'
+  version: "1"
   title: Sigil Generator Service
   description: A service that will generate an svg image based on a given input
 servers:
   - url: "http://sigil:8080"
-paths: 
+paths:
   /quadratic/{width}/{height}/{num}:
     get:
       summary: get a quadratic curve
@@ -38,6 +38,7 @@ paths:
           schema:
             type: integer
             minimum: 2
+            maximum: 50
       responses:
         "200":
           description: the curve
@@ -72,6 +73,7 @@ paths:
           schema:
             type: integer
             minimum: 2
+            maximum: 50
       responses:
         "200":
           description: the curve
@@ -112,7 +114,8 @@ paths:
           required: true
           schema:
             type: integer
-            minimum: 3
+            minimum: 2
+            maximum: 50
       responses:
         "200":
           description: the curve
@@ -146,7 +149,8 @@ paths:
           required: true
           schema:
             type: integer
-            minimum: 3
+            minimum: 2
+            maximum: 50
       responses:
         "200":
           description: the curve
@@ -156,4 +160,3 @@ paths:
                 type: string
         "400":
           description: bad request
-                   

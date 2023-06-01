@@ -1,9 +1,9 @@
 import { Router } from "express";
 import { StatusCodes } from "http-status-codes";
 import generate from "../Generate/generate";
-import { Quadratic } from "../Generate/CurveType";
+import { Cubic, Quadratic } from "../Generate/CurveType";
 
-const quadraticRoutes = Router();
+const cubicRoutes = Router();
 const { OK, BAD_REQUEST } = StatusCodes;
 
 const handler = (
@@ -29,13 +29,13 @@ const handler = (
   }
   return generate({
     size: { width, height },
-    curveType: Quadratic,
+    curveType: Cubic,
     numberOfPoints: num,
     seed,
   });
 };
 
-quadraticRoutes.get("/:width/:height/:num", (req, res) => {
+cubicRoutes.get("/:width/:height/:num", (req, res) => {
   const { width, height, num } = req.params;
   const seedStr = req.query.seed;
   const seed = seedStr ? seedStr.toString() : Date.now().toString();
@@ -46,7 +46,8 @@ quadraticRoutes.get("/:width/:height/:num", (req, res) => {
   }
   res.set("Content-Type", "image/svg+xml").status(OK).send(result);
 });
-quadraticRoutes.get("/:size/:num", (req, res) => {
+
+cubicRoutes.get("/:size/:num", (req, res) => {
   const { size, num } = req.params;
   const seedStr = req.query.seed;
   const seed = seedStr ? seedStr.toString() : Date.now().toString();
@@ -57,4 +58,4 @@ quadraticRoutes.get("/:size/:num", (req, res) => {
   }
   res.set("Content-Type", "image/svg+xml").status(OK).send(result);
 });
-export default quadraticRoutes;
+export default cubicRoutes;
