@@ -18,5 +18,5 @@ jobs:
 
       - name: Build and Push Image
         run: |
-          docker build --tag ghcr.io/hannahellis4242/sgs/sigil-generator-service:latest
+          docker build . --tag ghcr.io/hannahellis4242/sgs/sigil-generator-service:latest
           docker push ghcr.io/hannahellis4242/sgs/sigil-generator-service:latest
