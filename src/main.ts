@@ -2,10 +2,14 @@ import express, { query } from "express";
 import { StatusCodes } from "http-status-codes";
 import generate from "./Generate/generate";
 import CurveType, { Cubic, Quadratic } from "./Generate/CurveType";
+import quadraticRoutes from "./routes/quadraticRoutes";
+import morgan from "morgan";
 
 const app = express();
+app.use(morgan("combined"));
 
 const { OK, BAD_REQUEST } = StatusCodes;
+app.use("/quadratic", quadraticRoutes);
 
 const getCurve = (s: string): CurveType | undefined => {
   switch (s) {
